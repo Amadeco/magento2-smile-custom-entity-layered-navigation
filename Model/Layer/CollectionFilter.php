@@ -32,13 +32,6 @@ class CollectionFilter implements CollectionFilterInterface
         $collection,
         AttributeSetInterface $entity
     ) {
-        $collection->addAttributeToSelect(
-            [
-                'name',
-                'image',
-                'url_key',
-                'attribute_set_id'
-            ]
-        );
+        $collection->addAttributeToSelect('*');
     }
 }
