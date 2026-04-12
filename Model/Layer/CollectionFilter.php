@@ -21,12 +21,19 @@ use Amadeco\SmileCustomEntityLayeredNavigation\Model\Layer\CollectionFilterInter
 
 class CollectionFilter implements CollectionFilterInterface
 {
-    /**
-     * Filter entity collection
-     *
+    /**                                                                                                                         
+     * Filter entity collection                                                                                                 
+     *                                                                                                                          
+     * Loads all EAV attributes via addAttributeToSelect('*') to match the behavior of                                          
+     * CustomEntityRepository::getList(), which is the standard loading path used by entity                                     
+     * sets without filterable attributes. A previous hardcoded whitelist of 4 attributes                                       
+     * caused any custom attribute (e.g. resume, description) to be silently absent from                                        
+     * templates when the layered navigation path was active. Selecting '*' ensures parity                                      
+     * regardless of which attributes exist now or are added in the future.
+     *                                                                                                                          
      * @param $collection
      * @param AttributeSetInterface $entity
-     * @return void
+     * @return void                                                                                                             
      */
     public function filter(
         $collection,
